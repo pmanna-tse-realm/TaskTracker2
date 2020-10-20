@@ -72,21 +72,13 @@ class GoogleLoginViewController: LoginViewController, GIDSignInDelegate {
 			settings.userName	= nil
 			let credentials		= Credentials.google(serverAuthCode: user.serverAuthCode)
 			
-			app.login(credentials: credentials) { [weak self] maybeUser, error in
+			app.login(credentials: credentials) { [weak self] result in
 				DispatchQueue.main.async {
-					guard error == nil else {
-						self?.showErrorAlert(message: "Login failed: \(error!.localizedDescription)")
-						return
-					}
-					
-					guard maybeUser != nil else {
-						self?.showErrorAlert(message: "Invalid User")
-						return
-					}
-					
-					self?.authType	= .google
-					self?.dismiss(animated: true) { [weak self] in
-						self?.coordinator?.loginCompleted()
+					switch result {
+					case let .success(user):
+						self?.completeSignIn(type: .google, user: user, error: nil)
+					case let .failure(error):
+						self?.completeSignIn(type: .google, user: nil, error: error)
 					}
 				}
 			}

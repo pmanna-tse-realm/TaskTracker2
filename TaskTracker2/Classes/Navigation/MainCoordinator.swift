@@ -72,24 +72,24 @@ class MainCoordinator: NSObject, Coordinator {
 
 			// Run the query
 
-			collection.find(filter: ["_partition": AnyBSON(identity)]) { results, error in
-
+			collection.find(filter: ["_partition": AnyBSON(identity)]) { result in
 				// Note: this completion handler may be called on a background thread.
 				//       If you intend to operate on the UI, dispatch back to the main
 				//       thread with `DispatchQueue.main.sync {}`.
 
-				// Handle errors
-				guard error == nil else {
-					print("Call to MongoDB failed: \(error!.localizedDescription)")
-					return
-				}
-				// Print each document.
-				print("Results:")
-				results!.forEach { document in
-					print("Document:")
-					document.forEach { key, value in
-						print("\tkey: \(key), value: \(value)")
+				switch result {
+				case let .success(results):
+					// Print each document.
+					print("Results:")
+					results.forEach { document in
+						print("Document:")
+						document.forEach { key, value in
+							print("\tkey: \(key), value: \(value ?? "<NULL>")")
+						}
 					}
+				case let .failure(error):
+					// Handle errors
+					print("Call to MongoDB failed: \(error.localizedDescription)")
 				}
 			}
 		}
