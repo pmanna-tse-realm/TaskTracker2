@@ -55,10 +55,32 @@ class ProjectsViewController: UITableViewController, Storyboarded {
 			}
 
 			// Open a realm with the partition key set to the user.
-			// TODO: When support for user data is available, use the user data's list of
-			// available projects.
 			do {
-				realm = try Realm(configuration: user.configuration(partitionValue: partitionValue))
+				let config	= user.configuration(partitionValue: partitionValue)
+				
+				app.syncManager.errorHandler	= { [weak self] error, _ in
+					let syncError = error as! SyncError
+					
+					switch syncError.code {
+					case .clientResetError:
+						if let (_, clientResetToken) = syncError.clientResetInfo() {
+							DispatchQueue.main.async { [weak self] in
+								let alertController = UIAlertController(title: "Client Reset",
+								                                        message: "The database is out of sync, resetting client…",
+								                                        preferredStyle: .alert)
+								
+								alertController.addAction(UIAlertAction(title: "Reset", style: .destructive, handler: { [weak self] _ -> Void in
+									self?.cleanupAndLogout()
+									SyncSession.immediatelyHandleError(clientResetToken, syncManager: app.syncManager)
+								}))
+								self?.present(alertController, animated: true, completion: nil)
+							}
+						}
+					default:
+						print("SyncManager error: ", error.localizedDescription)
+					}
+				}
+				realm = try Realm(configuration: config)
 			} catch {
 				nav?.postErrorMessage(message: error.localizedDescription, isError: true)
 				
@@ -105,6 +127,20 @@ class ProjectsViewController: UITableViewController, Storyboarded {
 		}
 	}
 	
+	func cleanupAndLogout() {
+		notificationToken?.invalidate()
+		notificationToken		= nil
+		realm.invalidate()
+		realm					= nil
+		projects				= nil
+		
+		tableView.reloadData()
+		
+		logInOutButton.title	= "Log In"
+		addButton.isEnabled		= false
+		coordinator?.signOut()
+	}
+	
 	@IBAction func logOutButtonDidClick() {
 		if realm == nil {
 			coordinator?.showLoginWindow()
@@ -112,17 +148,8 @@ class ProjectsViewController: UITableViewController, Storyboarded {
 			let alertController = UIAlertController(title: "Log Out", message: "", preferredStyle: .alert)
 			alertController.addAction(UIAlertAction(title: "Yes, Log Out", style: .destructive, handler: { _ -> Void in
 				app.currentUser?.logOut(completion: { [weak self] _ in
-					self?.notificationToken?.invalidate()
-					self?.notificationToken		= nil
-					self?.realm					= nil
-					self?.projects				= nil
-					
 					DispatchQueue.main.sync { [weak self] in
-						self?.tableView.reloadData()
-						
-						self?.logInOutButton.title	= "Log In"
-						self?.addButton.isEnabled	= false
-						self?.coordinator?.signOut()
+						self?.cleanupAndLogout()
 					}
 				})
 			}))
