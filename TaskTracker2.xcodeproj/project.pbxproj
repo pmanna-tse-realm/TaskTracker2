@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -33,11 +33,9 @@
 		D8B5067025307A2C006F6A08 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D8B5066725307A2C006F6A08 /* GoogleSignIn.bundle */; };
 		D8B5067325307A2C006F6A08 /* GoogleSignInDependencies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B5066A25307A2C006F6A08 /* GoogleSignInDependencies.framework */; };
 		D8B5067425307A2C006F6A08 /* GoogleSignIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B5066B25307A2C006F6A08 /* GoogleSignIn.framework */; };
-		D8B5067825307A42006F6A08 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B5066325307A2C006F6A08 /* Realm.framework */; };
-		D8B5067925307A42006F6A08 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D8B5066325307A2C006F6A08 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D8B5067A25307A44006F6A08 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B5066225307A2C006F6A08 /* RealmSwift.framework */; };
-		D8B5067B25307A44006F6A08 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D8B5066225307A2C006F6A08 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D8BCF53E252B25B900478F57 /* GoogleLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BCF53D252B25B900478F57 /* GoogleLoginViewController.swift */; };
+		D8C4737025A7652700E7387E /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = D8C4736F25A7652700E7387E /* Realm */; };
+		D8C4737225A7652700E7387E /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D8C4737125A7652700E7387E /* RealmSwift */; };
 		D8EB01DB24EC320E00678366 /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EB01DA24EC320E00678366 /* TasksViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,8 +56,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D8B5067B25307A44006F6A08 /* RealmSwift.framework in Embed Frameworks */,
-				D8B5067925307A42006F6A08 /* Realm.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -95,8 +91,6 @@
 		D8AE227724EA8B670055B058 /* NavigationControllerWithError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerWithError.swift; sourceTree = "<group>"; };
 		D8AE227924EAC8D10055B058 /* AKFloatingLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKFloatingLabelTextField.swift; sourceTree = "<group>"; };
 		D8AE227B24EACB5C0055B058 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		D8B5066225307A2C006F6A08 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
-		D8B5066325307A2C006F6A08 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
 		D8B5066725307A2C006F6A08 /* GoogleSignIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleSignIn.bundle; sourceTree = "<group>"; };
 		D8B5066A25307A2C006F6A08 /* GoogleSignInDependencies.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleSignInDependencies.framework; sourceTree = "<group>"; };
 		D8B5066B25307A2C006F6A08 /* GoogleSignIn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleSignIn.framework; sourceTree = "<group>"; };
@@ -112,10 +106,10 @@
 				D8B5067325307A2C006F6A08 /* GoogleSignInDependencies.framework in Frameworks */,
 				D8A3480224F684B300D46422 /* AuthenticationServices.framework in Frameworks */,
 				D8A3480024F684B300D46422 /* SystemConfiguration.framework in Frameworks */,
-				D8B5067825307A42006F6A08 /* Realm.framework in Frameworks */,
 				D8A3480124F684B300D46422 /* LocalAuthentication.framework in Frameworks */,
 				D8A3480324F684B300D46422 /* SafariServices.framework in Frameworks */,
-				D8B5067A25307A44006F6A08 /* RealmSwift.framework in Frameworks */,
+				D8C4737025A7652700E7387E /* Realm in Frameworks */,
+				D8C4737225A7652700E7387E /* RealmSwift in Frameworks */,
 				D8B5067425307A2C006F6A08 /* GoogleSignIn.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -142,7 +136,6 @@
 			children = (
 				D8A00C6924E682B400D835CE /* TaskTracker2 */,
 				D8B5066625307A2C006F6A08 /* GoogleSignIn */,
-				D8B5066125307A2C006F6A08 /* Realm */,
 				D8A00C8224E682B700D835CE /* TaskTracker2Tests */,
 				D8A00C6824E682B400D835CE /* Products */,
 				D8A347FB24F684B300D46422 /* Frameworks */,
@@ -249,15 +242,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D8B5066125307A2C006F6A08 /* Realm */ = {
-			isa = PBXGroup;
-			children = (
-				D8B5066225307A2C006F6A08 /* RealmSwift.framework */,
-				D8B5066325307A2C006F6A08 /* Realm.framework */,
-			);
-			path = Realm;
-			sourceTree = "<group>";
-		};
 		D8B5066625307A2C006F6A08 /* GoogleSignIn */ = {
 			isa = PBXGroup;
 			children = (
@@ -286,6 +270,10 @@
 			dependencies = (
 			);
 			name = TaskTracker2;
+			packageProductDependencies = (
+				D8C4736F25A7652700E7387E /* Realm */,
+				D8C4737125A7652700E7387E /* RealmSwift */,
+			);
 			productName = TaskTracker2;
 			productReference = D8A00C6724E682B400D835CE /* TaskTracker2.app */;
 			productType = "com.apple.product-type.application";
@@ -336,6 +324,9 @@
 				Base,
 			);
 			mainGroup = D8A00C5E24E682B400D835CE;
+			packageReferences = (
+				D8C4736E25A7652700E7387E /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+			);
 			productRefGroup = D8A00C6824E682B400D835CE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -699,6 +690,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D8C4736E25A7652700E7387E /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D8C4736F25A7652700E7387E /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D8C4736E25A7652700E7387E /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+		D8C4737125A7652700E7387E /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D8C4736E25A7652700E7387E /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D8A00C5F24E682B400D835CE /* Project object */;
 }

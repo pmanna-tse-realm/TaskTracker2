@@ -47,7 +47,7 @@ class TasksViewController: UITableViewController, Storyboarded {
 		let nav	= navigationController as? NavigationControllerWithError
 		
 		guard project != nil, realm != nil, let syncConfiguration = realm.configuration.syncConfiguration,
-			let syncPartitionValue = syncConfiguration.partitionValue
+		      let syncPartitionValue = syncConfiguration.partitionValue
 		else {
 			nav?.postErrorMessage(message: "Sync configuration not found! Realm not opened with sync?", isError: true)
 			

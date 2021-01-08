@@ -18,7 +18,8 @@ class MainCoordinator: NSObject, Coordinator {
 	}
 
 	func start() {
-		app.syncManager.logLevel	= .info
+		app.syncManager.logLevel					= .info
+		app.configuration.defaultRequestTimeoutMS	= 15000
 		
 		let vc = ProjectsViewController.instantiate()
         
