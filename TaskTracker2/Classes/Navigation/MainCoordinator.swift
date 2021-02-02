@@ -28,7 +28,11 @@ class MainCoordinator: NSObject, Coordinator {
 		navigationController.pushViewController(vc, animated: false)
 		
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-			self?.showLoginWindow()
+			if app.currentUser != nil {
+				self?.loginCompleted()
+			} else {
+				self?.showLoginWindow()
+			}
 		}
 	}
 	
